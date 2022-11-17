@@ -1,4 +1,5 @@
 pipeline { agent any stages {
+    stages {
 stage ('Checkout') { steps {
 git branch:'master', url: 'https://github.com/OWASP/Vulnerable-Web- Application.git'
 }
@@ -16,6 +17,7 @@ sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=OWASP - Dsonar.sources=.
 post {
 always {
 recordIssues enabledForFailure: true, tool: sonarQube()
+}
 }
 }
 }
